@@ -14,51 +14,68 @@
   .address { text-align: center; margin: 12px 0 24px; }
   .section { margin-bottom: 14px; text-align: justify; }
   .section strong { font-size: 14px; }
-  .indent { margin-left: 24px; }
   .fillable { border: none; border-bottom: 1px solid #333; background: #fafafa; font-family: inherit; font-size: 14px; padding: 2px 6px; min-width: 120px; }
   .fillable:focus { outline: none; background: #fff8e0; }
   .fillable-wide { width: 200px; }
   .fillable-short { width: 80px; }
   .fillable-med { width: 140px; }
-  .checkbox-row { margin: 8px 0 8px 24px; }
-  .checkbox-row input[type="checkbox"] { margin-right: 8px; transform: scale(1.2); }
 
   .sig-block { margin: 30px 0; page-break-inside: avoid; }
   .sig-label { font-weight: bold; margin-bottom: 8px; font-size: 15px; }
   .sig-row { display: flex; align-items: flex-end; gap: 20px; margin-bottom: 4px; }
   .sig-canvas-wrap { flex: 1; position: relative; }
   .sig-canvas { border: 1px solid #999; border-radius: 4px; cursor: crosshair; display: block; width: 100%; height: 80px; background: #fff; touch-action: none; }
-  .sig-canvas.signed { border-color: #2a7d2a; background: #f8fff8; }
-  .sig-date { font-size: 13px; color: #444; min-width: 200px; text-align: right; }
+  .sig-canvas.signed { border-color: #2a7d2a; background: #f8fff8; cursor: default; }
+  .sig-canvas.remote { border-color: #2a5da8; background: #f0f5ff; cursor: default; }
+  .sig-date { font-size: 13px; color: #444; min-width: 220px; text-align: right; }
   .sig-name { font-size: 13px; color: #555; margin-top: 2px; }
   .sig-actions { margin-top: 4px; }
-  .sig-actions button { font-size: 12px; padding: 3px 10px; margin-right: 6px; cursor: pointer; border: 1px solid #aaa; border-radius: 3px; background: #f5f5f5; }
+  .sig-actions button { font-size: 12px; padding: 4px 12px; margin-right: 6px; cursor: pointer; border: 1px solid #aaa; border-radius: 3px; background: #f5f5f5; }
   .sig-actions button:hover { background: #e8e8e8; }
-  .sig-actions button.sign-btn { background: #2a7d2a; color: white; border-color: #1e5e1e; }
+  .sig-actions button.sign-btn { background: #2a7d2a; color: white; border-color: #1e5e1e; font-size: 13px; padding: 5px 16px; }
   .sig-actions button.sign-btn:hover { background: #236b23; }
   .sig-actions button.sign-btn:disabled { background: #999; border-color: #888; cursor: default; }
-  .sig-status { font-size: 12px; color: #2a7d2a; font-weight: bold; display: none; }
+  .sig-status { font-size: 12px; color: #2a7d2a; font-weight: bold; display: none; margin-left: 6px; }
   .sig-status.visible { display: inline; }
 
   .separator { border: none; border-top: 1px dashed #999; margin: 30px 0; }
 
-  .actions-bar { text-align: center; margin: 30px 0; padding: 20px; background: #f5f5f5; border-radius: 8px; }
-  .actions-bar button { font-size: 15px; padding: 10px 28px; margin: 0 8px; cursor: pointer; border: 1px solid #555; border-radius: 5px; }
-  .actions-bar .print-btn { background: #2a5da8; color: white; border-color: #1e4a85; }
-  .actions-bar .print-btn:hover { background: #234d8c; }
-  .actions-bar .download-btn { background: #6b4ba3; color: white; border-color: #553b82; }
-  .actions-bar .download-btn:hover { background: #5a3f8c; }
+  .share-bar, .actions-bar { text-align: center; margin: 20px 0; padding: 20px; border-radius: 8px; }
+  .share-bar { background: #e8f0fe; border: 2px solid #2a5da8; }
+  .actions-bar { background: #f5f5f5; }
+  .share-bar h3 { color: #2a5da8; margin-bottom: 10px; font-size: 16px; }
+  .share-bar p { font-size: 13px; color: #444; margin-bottom: 12px; }
+  .share-bar button, .actions-bar button { font-size: 15px; padding: 10px 28px; margin: 4px 8px; cursor: pointer; border: 1px solid #555; border-radius: 5px; color: white; }
+  .btn-share { background: #2a5da8; border-color: #1e4a85; }
+  .btn-share:hover { background: #234d8c; }
+  .btn-finalize { background: #2a7d2a; border-color: #1e5e1e; }
+  .btn-finalize:hover { background: #236b23; }
+  .btn-pdf { background: #6b4ba3; border-color: #553b82; }
+  .btn-pdf:hover { background: #5a3f8c; }
+  .btn-print { background: #555; border-color: #333; }
+  .btn-print:hover { background: #444; }
+
+  .link-box { width: 100%; padding: 8px; font-size: 12px; font-family: monospace; border: 1px solid #aaa; border-radius: 4px; margin: 8px 0; background: #fff; }
+  .copied-msg { color: #2a7d2a; font-weight: bold; font-size: 13px; display: none; }
+
+  .banner { text-align: center; margin: 20px 0; padding: 16px 20px; border-radius: 8px; font-size: 14px; }
+  .banner-complete { background: #e8f5e9; border: 2px solid #2a7d2a; color: #1e5e1e; }
+  .banner-partial { background: #fff3e0; border: 2px solid #e65100; color: #bf360c; }
+  .banner-viewing { background: #e8f0fe; border: 2px solid #2a5da8; color: #1a4a7a; }
 
   .legal-note { font-size: 11px; color: #777; text-align: center; margin-top: 20px; font-style: italic; }
 
+  .no-print { }
   @media print {
-    .sig-actions, .actions-bar, .legal-note { display: none !important; }
+    .no-print { display: none !important; }
     .sig-canvas { border: 1px solid #ccc; }
     body { padding: 20px; }
   }
 </style>
 </head>
 <body>
+
+<div class="banner banner-viewing no-print" id="mode-banner" style="display:none;"></div>
 
 <h1>AGREEMENT TO REMOVE TENANT FROM LEASE</h1>
 
@@ -136,13 +153,13 @@
 
 <!-- Signature Blocks -->
 
-<div class="sig-block">
+<div class="sig-block" id="block-tenant1">
   <div class="sig-label">REMAINING TENANT:</div>
   <div class="sig-row">
     <div class="sig-canvas-wrap">
       <canvas class="sig-canvas" id="sig-tenant1" width="500" height="80"></canvas>
       <div class="sig-name">Isaac Breitenbach</div>
-      <div class="sig-actions">
+      <div class="sig-actions no-print" id="actions-tenant1">
         <button class="sign-btn" onclick="lockSignature('tenant1')">Sign &amp; Lock</button>
         <button onclick="clearSignature('tenant1')">Clear</button>
         <span class="sig-status" id="status-tenant1"></span>
@@ -152,13 +169,13 @@
   </div>
 </div>
 
-<div class="sig-block">
+<div class="sig-block" id="block-tenant2">
   <div class="sig-label">DEPARTING TENANT:</div>
   <div class="sig-row">
     <div class="sig-canvas-wrap">
       <canvas class="sig-canvas" id="sig-tenant2" width="500" height="80"></canvas>
       <div class="sig-name">Jamie Young</div>
-      <div class="sig-actions">
+      <div class="sig-actions no-print" id="actions-tenant2">
         <button class="sign-btn" onclick="lockSignature('tenant2')">Sign &amp; Lock</button>
         <button onclick="clearSignature('tenant2')">Clear</button>
         <span class="sig-status" id="status-tenant2"></span>
@@ -183,12 +200,12 @@
   Company: <input type="text" class="fillable fillable-wide" id="landlord-company" placeholder="If applicable">
 </p>
 
-<div class="sig-block">
+<div class="sig-block" id="block-landlord">
   <div class="sig-label">LANDLORD SIGNATURE:</div>
   <div class="sig-row">
     <div class="sig-canvas-wrap">
       <canvas class="sig-canvas" id="sig-landlord" width="500" height="80"></canvas>
-      <div class="sig-actions">
+      <div class="sig-actions no-print" id="actions-landlord">
         <button class="sign-btn" onclick="lockSignature('landlord')">Sign &amp; Lock</button>
         <button onclick="clearSignature('landlord')">Clear</button>
         <span class="sig-status" id="status-landlord"></span>
@@ -198,24 +215,41 @@
   </div>
 </div>
 
-<div class="actions-bar">
-  <button class="print-btn" onclick="window.print()">Print Document</button>
-  <button class="download-btn" onclick="downloadPDF()">Download as PDF</button>
-  <button class="download-btn" style="background:#2a7d2a;border-color:#1e5e1e;" onclick="downloadSigned()">Download HTML Copy</button>
+<!-- Share / Action Bars -->
+
+<div class="share-bar no-print" id="share-isaac" style="display:none;">
+  <h3>Step 1: Send this link to Jamie</h3>
+  <p>Your signature is embedded in the link. Jamie will see it locked and can add hers.</p>
+  <textarea class="link-box" id="share-link" rows="3" readonly></textarea>
+  <br>
+  <button class="btn-share" onclick="copyLink()">Copy Link</button>
+  <span class="copied-msg" id="copied-msg">Copied!</span>
 </div>
 
-<div class="actions-bar" id="all-signed-banner" style="display:none; background:#e8f5e9; border:2px solid #2a7d2a;">
-  <p style="margin-bottom:12px; font-weight:bold; color:#2a7d2a;">All tenant signatures collected. Ready to send to landlord.</p>
-  <button class="download-btn" style="font-size:17px;padding:12px 36px;background:#2a7d2a;border-color:#1e5e1e;" onclick="downloadPDF()">Download PDF for Landlord</button>
+<div class="share-bar no-print" id="share-jamie" style="display:none; border-color:#2a7d2a; background:#e8f5e9;">
+  <h3>Step 2: Send completed agreement to landlord</h3>
+  <p>Both tenant signatures collected. Generate a link with all signatures for the landlord, or download PDF.</p>
+  <textarea class="link-box" id="share-link-final" rows="3" readonly></textarea>
+  <br>
+  <button class="btn-share" onclick="copyLinkFinal()">Copy Link for Landlord</button>
+  <span class="copied-msg" id="copied-msg-final">Copied!</span>
+  <br><br>
+  <button class="btn-finalize" onclick="downloadPDF()">Download PDF</button>
 </div>
 
-<p class="legal-note">
-  Digital signatures captured with timestamp and rendered on canvas.
-  For additional legal weight, consider having signatures notarized.
+<div class="actions-bar no-print" id="general-actions">
+  <button class="btn-print" onclick="window.print()">Print</button>
+  <button class="btn-pdf" onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<p class="legal-note no-print">
+  Signatures are recorded as pen strokes with timestamps and embedded in shareable links.
+  No data is sent to any server. For additional legal weight, consider having signatures notarized.
 </p>
 
 <script>
 const pads = {};
+const sigData = {};
 
 function initPad(id) {
   const canvas = document.getElementById('sig-' + id);
@@ -223,8 +257,11 @@ function initPad(id) {
   let drawing = false;
   let locked = false;
   let hasStrokes = false;
+  let strokes = [];
+  let currentStroke = [];
 
   function resize() {
+    const saved = strokes.slice();
     const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     canvas.width = rect.width * dpr;
@@ -234,13 +271,17 @@ function initPad(id) {
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.strokeStyle = '#111';
+    if (saved.length) { strokes = saved; replayStrokes(id); }
   }
   resize();
 
   function getPos(e) {
     const rect = canvas.getBoundingClientRect();
     const touch = e.touches ? e.touches[0] : e;
-    return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+    return [
+      Math.round((touch.clientX - rect.left) * 10) / 10,
+      Math.round((touch.clientY - rect.top) * 10) / 10
+    ];
   }
 
   function start(e) {
@@ -248,16 +289,19 @@ function initPad(id) {
     e.preventDefault();
     drawing = true;
     hasStrokes = true;
+    currentStroke = [];
     const p = getPos(e);
+    currentStroke.push(p);
     ctx.beginPath();
-    ctx.moveTo(p.x, p.y);
+    ctx.moveTo(p[0], p[1]);
   }
 
   function move(e) {
     if (!drawing || locked) return;
     e.preventDefault();
     const p = getPos(e);
-    ctx.lineTo(p.x, p.y);
+    currentStroke.push(p);
+    ctx.lineTo(p[0], p[1]);
     ctx.stroke();
   }
 
@@ -265,6 +309,10 @@ function initPad(id) {
     if (!drawing) return;
     e.preventDefault();
     drawing = false;
+    if (currentStroke.length > 0) {
+      strokes.push(currentStroke);
+      currentStroke = [];
+    }
   }
 
   canvas.addEventListener('mousedown', start);
@@ -280,13 +328,36 @@ function initPad(id) {
     get locked() { return locked; },
     set locked(v) { locked = v; },
     get hasStrokes() { return hasStrokes; },
+    set hasStrokes(v) { hasStrokes = v; },
+    get strokes() { return strokes; },
+    set strokes(v) { strokes = v; },
     clear() {
       if (locked) return;
       const dpr = window.devicePixelRatio || 1;
       ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
       hasStrokes = false;
+      strokes = [];
     }
   };
+}
+
+function replayStrokes(id) {
+  const pad = pads[id];
+  const ctx = pad.ctx;
+  const rect = pad.canvas.getBoundingClientRect();
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = '#111';
+  for (const stroke of pad.strokes) {
+    if (stroke.length < 1) continue;
+    ctx.beginPath();
+    ctx.moveTo(stroke[0][0], stroke[0][1]);
+    for (let i = 1; i < stroke.length; i++) {
+      ctx.lineTo(stroke[i][0], stroke[i][1]);
+    }
+    ctx.stroke();
+  }
 }
 
 function clearSignature(id) {
@@ -295,33 +366,115 @@ function clearSignature(id) {
   document.getElementById('status-' + id).classList.remove('visible');
   document.getElementById('date-' + id).textContent = 'Date: _________________';
   pads[id].canvas.classList.remove('signed');
+  delete sigData[id];
 }
 
 function lockSignature(id) {
   const pad = pads[id];
   if (pad.locked) return;
   if (!pad.hasStrokes) { alert('Please draw your signature first.'); return; }
+
   pad.locked = true;
   pad.canvas.classList.add('signed');
-  pad.canvas.style.cursor = 'default';
   const now = new Date();
   const ts = now.toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'medium' });
+  const isoTs = now.toISOString();
   document.getElementById('date-' + id).innerHTML = '<strong>Signed:</strong> ' + ts;
   const status = document.getElementById('status-' + id);
   status.textContent = 'Locked';
   status.classList.add('visible');
   pad.canvas.parentElement.querySelector('.sign-btn').disabled = true;
 
-  if (pads.tenant1.locked && pads.tenant2.locked) {
-    document.getElementById('all-signed-banner').style.display = 'block';
-    document.getElementById('all-signed-banner').scrollIntoView({ behavior: 'smooth' });
+  sigData[id] = {
+    strokes: pad.strokes,
+    timestamp: isoTs,
+    display: ts
+  };
+
+  updateShareUI();
+}
+
+function loadRemoteSignature(id, data) {
+  const pad = pads[id];
+  pad.strokes = data.strokes;
+  pad.hasStrokes = true;
+  pad.locked = true;
+  pad.canvas.classList.add('signed', 'remote');
+  replayStrokes(id);
+  document.getElementById('date-' + id).innerHTML = '<strong>Signed:</strong> ' + data.display;
+  const status = document.getElementById('status-' + id);
+  status.textContent = 'Verified';
+  status.classList.add('visible');
+  const signBtn = pad.canvas.parentElement.querySelector('.sign-btn');
+  if (signBtn) signBtn.disabled = true;
+  sigData[id] = data;
+}
+
+function encodeSignatures() {
+  const payload = {};
+  for (const [id, data] of Object.entries(sigData)) {
+    payload[id] = data;
   }
+  const json = JSON.stringify(payload);
+  return btoa(unescape(encodeURIComponent(json)));
+}
+
+function decodeSignatures(encoded) {
+  try {
+    const json = decodeURIComponent(escape(atob(encoded)));
+    return JSON.parse(json);
+  } catch (e) {
+    return null;
+  }
+}
+
+function buildShareURL() {
+  const base = window.location.origin + window.location.pathname;
+  const encoded = encodeSignatures();
+  return base + '#sig=' + encoded;
+}
+
+function updateShareUI() {
+  const has1 = !!sigData.tenant1;
+  const has2 = !!sigData.tenant2;
+
+  if (has1 && !has2) {
+    document.getElementById('share-isaac').style.display = 'block';
+    document.getElementById('share-jamie').style.display = 'none';
+    document.getElementById('share-link').value = buildShareURL();
+  } else if (has1 && has2) {
+    document.getElementById('share-isaac').style.display = 'none';
+    document.getElementById('share-jamie').style.display = 'block';
+    document.getElementById('share-link-final').value = buildShareURL();
+    // general-actions always stays visible for PDF download
+  }
+}
+
+function copyLink() {
+  const el = document.getElementById('share-link');
+  el.select();
+  navigator.clipboard.writeText(el.value).then(() => {
+    const msg = document.getElementById('copied-msg');
+    msg.style.display = 'inline';
+    setTimeout(() => msg.style.display = 'none', 2000);
+  });
+}
+
+function copyLinkFinal() {
+  const el = document.getElementById('share-link-final');
+  el.select();
+  navigator.clipboard.writeText(el.value).then(() => {
+    const msg = document.getElementById('copied-msg-final');
+    msg.style.display = 'inline';
+    setTimeout(() => msg.style.display = 'none', 2000);
+  });
 }
 
 function downloadPDF() {
   const canvases = document.querySelectorAll('.sig-canvas');
   canvases.forEach(c => {
-    if (pads[c.id.replace('sig-', '')].hasStrokes) {
+    const id = c.id.replace('sig-', '');
+    if (pads[id] && pads[id].hasStrokes) {
       const img = document.createElement('img');
       img.src = c.toDataURL('image/png');
       img.style.cssText = 'width:100%;height:80px;border:1px solid #999;border-radius:4px;display:block;';
@@ -331,47 +484,53 @@ function downloadPDF() {
     }
   });
 
-  document.querySelectorAll('.sig-actions, .actions-bar, .legal-note').forEach(el => {
-    el.dataset.origDisplay = el.style.display;
-    el.style.display = 'none';
-  });
-
   window.print();
 
   setTimeout(() => {
     document.querySelectorAll('.sig-print-img').forEach(img => img.remove());
     canvases.forEach(c => c.style.display = 'block');
-    document.querySelectorAll('.sig-actions, .actions-bar, .legal-note').forEach(el => {
-      el.style.display = el.dataset.origDisplay || '';
-    });
   }, 1000);
 }
 
-function downloadSigned() {
-  const clone = document.documentElement.cloneNode(true);
-  clone.querySelectorAll('.actions-bar, .legal-note, script').forEach(el => el.remove());
-
-  for (const id of Object.keys(pads)) {
-    const origCanvas = pads[id].canvas;
-    const img = clone.querySelector('#sig-' + id);
-    if (img && pads[id].hasStrokes) {
-      const imgEl = document.createElement('img');
-      imgEl.src = origCanvas.toDataURL('image/png');
-      imgEl.style.cssText = 'width:100%;height:80px;border:1px solid #999;border-radius:4px;';
-      img.replaceWith(imgEl);
-    }
-  }
-
-  const blob = new Blob(['<!DOCTYPE html>' + clone.outerHTML], { type: 'text/html' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'Lease_Removal_Agreement_Signed.html';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
+// --- Init ---
 ['tenant1', 'tenant2', 'landlord'].forEach(initPad);
 
+// Load signatures from URL hash
+(function loadFromHash() {
+  const hash = window.location.hash;
+  if (!hash || !hash.startsWith('#sig=')) return;
+
+  const encoded = hash.substring(5);
+  const decoded = decodeSignatures(encoded);
+  if (!decoded) return;
+
+  const banner = document.getElementById('mode-banner');
+  const keys = Object.keys(decoded);
+
+  if (decoded.tenant1 && !decoded.tenant2) {
+    loadRemoteSignature('tenant1', decoded.tenant1);
+    banner.className = 'banner banner-partial no-print';
+    banner.innerHTML = '<strong>Isaac Breitenbach has signed this agreement.</strong><br>Jamie, please review the agreement above and add your signature below.';
+    banner.style.display = 'block';
+    document.getElementById('actions-tenant1').style.display = 'none';
+  } else if (decoded.tenant1 && decoded.tenant2) {
+    loadRemoteSignature('tenant1', decoded.tenant1);
+    loadRemoteSignature('tenant2', decoded.tenant2);
+    banner.className = 'banner banner-complete no-print';
+    banner.innerHTML = '<strong>Both tenants have signed.</strong><br>Landlord: please review and add your signature below, then download the PDF.';
+    banner.style.display = 'block';
+    document.getElementById('actions-tenant1').style.display = 'none';
+    document.getElementById('actions-tenant2').style.display = 'none';
+  }
+
+  if (decoded.landlord) {
+    loadRemoteSignature('landlord', decoded.landlord);
+    banner.className = 'banner banner-complete no-print';
+    banner.innerHTML = '<strong>All parties have signed. This agreement is fully executed.</strong>';
+    banner.style.display = 'block';
+    document.getElementById('actions-landlord').style.display = 'none';
+  }
+})();
 </script>
 </body>
 </html>
