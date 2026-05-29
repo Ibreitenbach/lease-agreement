@@ -101,40 +101,37 @@
 </p>
 
 <p class="section">
-  <strong>4. SECURITY DEPOSIT.</strong>
+  <strong>4. SECURITY DEPOSIT.</strong> The security deposit was paid solely by Isaac Breitenbach. Jamie Young acknowledges that she has no claim to any portion of the security deposit, and the full deposit shall remain applied to the Lease for the benefit of Isaac Breitenbach as the sole remaining tenant.
 </p>
-<div class="checkbox-row">
-  <label><input type="checkbox" id="dep-opt-a" checked> The security deposit shall remain applied to the Lease for the benefit of the Remaining Tenant. Jamie Young waives any claim to the security deposit.</label>
-</div>
-<div class="checkbox-row">
-  <label><input type="checkbox" id="dep-opt-b"> Jamie Young shall receive $<input type="text" class="fillable fillable-short" id="dep-amount" placeholder="amount"> as her portion of the security deposit, to be paid by Isaac Breitenbach within <input type="text" class="fillable fillable-short" id="dep-days" placeholder="days"> days of the effective date.</label>
-</div>
 
 <p class="section">
   <strong>5. KEYS AND ACCESS.</strong> Jamie Young shall return all keys, access cards, garage openers, and any other means of entry to the property to Isaac Breitenbach on or before:
-  <input type="date" class="fillable fillable-wide" id="key-date">
+  <input type="date" class="fillable fillable-wide" id="key-date">.
+  Upon execution of this Agreement, Jamie Young shall have no right of entry to the property for any reason. Any entry without the express written consent of Isaac Breitenbach shall be considered unauthorized.
 </p>
 
 <p class="section">
-  <strong>6. PERSONAL PROPERTY.</strong> Jamie Young shall remove all personal belongings from the property on or before:
-  <input type="date" class="fillable fillable-wide" id="moveout-date">
-  Any personal property remaining after that date shall be considered abandoned.
+  <strong>6. PERSONAL PROPERTY.</strong> Jamie Young acknowledges and agrees that she has already retrieved all personal belongings from the property prior to the execution of this Agreement. Jamie Young waives any and all claims to any items remaining at the property and agrees that no further access to the property shall be granted for the purpose of retrieving belongings.
 </p>
 
 <p class="section">
-  <strong>7. EXISTING DAMAGES.</strong> Both parties acknowledge that as of the date of this Agreement, any existing damage to the property is the shared responsibility of both parties for the period of joint tenancy. Isaac Breitenbach assumes responsibility for the condition of the property from the effective date forward.
+  <strong>7. NO FURTHER CLAIMS.</strong> Jamie Young agrees that upon execution of this Agreement, she relinquishes any and all claims of residency, tenancy, or occupancy at the property. Jamie Young shall not represent to any person, entity, or authority that she resides at or has any right to access the property.
 </p>
 
 <p class="section">
-  <strong>8. LANDLORD ACKNOWLEDGMENT.</strong> This Agreement is contingent upon written acknowledgment by the Landlord or property management company. Both parties agree to cooperate in obtaining such acknowledgment.
+  <strong>8. EXISTING DAMAGES.</strong> Both parties acknowledge that as of the date of this Agreement, any existing damage to the property is the shared responsibility of both parties for the period of joint tenancy. Isaac Breitenbach assumes responsibility for the condition of the property from the effective date forward.
 </p>
 
 <p class="section">
-  <strong>9. GOVERNING LAW.</strong> This Agreement shall be governed by the laws of the State of Oklahoma.
+  <strong>9. LANDLORD ACKNOWLEDGMENT.</strong> This Agreement is contingent upon written acknowledgment by the Landlord or property management company. Both parties agree to cooperate in obtaining such acknowledgment.
 </p>
 
 <p class="section">
-  <strong>10. ENTIRE AGREEMENT.</strong> This Agreement constitutes the entire understanding between the parties regarding the removal of Jamie Young from the Lease and supersedes any prior oral or written agreements on this subject.
+  <strong>10. GOVERNING LAW.</strong> This Agreement shall be governed by the laws of the State of Oklahoma.
+</p>
+
+<p class="section">
+  <strong>11. ENTIRE AGREEMENT.</strong> This Agreement constitutes the entire understanding between the parties regarding the removal of Jamie Young from the Lease and supersedes any prior oral or written agreements on this subject.
 </p>
 
 <!-- Signature Blocks -->
@@ -375,12 +372,6 @@ function downloadSigned() {
 
 ['tenant1', 'tenant2', 'landlord'].forEach(initPad);
 
-document.getElementById('dep-opt-a').addEventListener('change', function() {
-  if (this.checked) document.getElementById('dep-opt-b').checked = false;
-});
-document.getElementById('dep-opt-b').addEventListener('change', function() {
-  if (this.checked) document.getElementById('dep-opt-a').checked = false;
-});
 </script>
 </body>
 </html>
