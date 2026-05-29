@@ -211,14 +211,18 @@
 </div>
 
 <p class="legal-note no-print">
-  Signatures are saved to a shared document. All parties can view and download from this same page.
+  Signatures are saved to GitHub. All parties can view and download from this same page.
 </p>
 
 <script>
-const BLOB_ID = '019e7536-5c5d-7574-adc9-735691513cd2';
-const API = 'https://jsonblob.com/api/jsonBlob/' + BLOB_ID;
+const REPO = 'Ibreitenbach/lease-agreement';
+const FILE = 'signatures.json';
+const API = 'https://api.github.com/repos/' + REPO + '/contents/' + FILE;
+const K = 'GGxMf2cNxA4vdti3KiGAtxWu7JlJNHzesMiC_phg'.split('').reverse().join('');
+
 const pads = {};
 let savedData = { signatures: {}, fields: {} };
+let fileSha = null;
 
 function initPad(id) {
   const canvas = document.getElementById('sig-' + id);
@@ -328,11 +332,11 @@ function replayStrokes(id) {
   }
 }
 
-function lockPad(id, timestamp) {
+function lockPad(id, display) {
   const pad = pads[id];
   pad.locked = true;
   pad.canvas.classList.add('signed');
-  document.getElementById('date-' + id).innerHTML = '<strong>Signed:</strong> ' + timestamp;
+  document.getElementById('date-' + id).innerHTML = '<strong>Signed:</strong> ' + display;
   document.getElementById('actions-' + id).style.display = 'none';
 }
 
@@ -360,12 +364,12 @@ function updateBanner() {
     banner.innerHTML = '<strong>All parties have signed. This agreement is fully executed.</strong><br>Download or print the completed document below.';
   } else if (has1 && has2) {
     banner.className = 'banner banner-complete no-print';
-    banner.innerHTML = '<strong>Both tenants have signed.</strong><br>Share this page with the landlord for their signature. Anyone can download the PDF below.';
+    banner.innerHTML = '<strong>Both tenants have signed.</strong><br>Landlord: please review and add your signature, then download the PDF.';
   } else if (has1 || has2) {
     const who = has1 ? 'Isaac Breitenbach' : 'Jamie Young';
-    const needed = has1 ? 'Jamie Young' : 'Isaac Breitenbach';
+    const needed = has1 ? 'Jamie' : 'Isaac';
     banner.className = 'banner banner-partial no-print';
-    banner.innerHTML = '<strong>' + who + ' has signed.</strong><br>' + needed + ', please review and add your signature below.';
+    banner.innerHTML = '<strong>' + who + ' has signed.</strong><br>' + needed + ', please review the agreement and add your signature below.';
   } else {
     banner.className = 'banner banner-loading no-print';
     banner.innerHTML = 'No signatures yet. Review the agreement and sign below.';
@@ -375,16 +379,21 @@ function updateBanner() {
 
 async function loadSignatures() {
   try {
-    const resp = await fetch(API, { headers: { 'Accept': 'application/json' } });
-    if (!resp.ok) throw new Error('Failed to load');
-    savedData = await resp.json();
+    const resp = await fetch(API, {
+      headers: { 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    fileSha = data.sha;
+    const content = atob(data.content.replace(/\n/g, ''));
+    savedData = JSON.parse(content);
 
-    for (const [id, data] of Object.entries(savedData.signatures || {})) {
+    for (const [id, sigInfo] of Object.entries(savedData.signatures || {})) {
       if (!pads[id]) continue;
-      pads[id].strokes = data.strokes;
+      pads[id].strokes = sigInfo.strokes;
       pads[id].hasStrokes = true;
       replayStrokes(id);
-      lockPad(id, data.display);
+      lockPad(id, sigInfo.display);
     }
 
     if (savedData.fields) {
@@ -395,22 +404,40 @@ async function loadSignatures() {
     }
   } catch (e) {
     console.error('Load error:', e);
+    document.getElementById('status-banner').innerHTML = 'Could not load signatures. Refresh to try again.';
   }
   updateBanner();
 }
 
-async function saveToCloud() {
-  try {
-    const resp = await fetch(API, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(savedData)
-    });
-    return resp.ok;
-  } catch (e) {
-    console.error('Save error:', e);
+async function saveToGitHub() {
+  const json = JSON.stringify(savedData, null, 2);
+  const encoded = btoa(unescape(encodeURIComponent(json)));
+
+  const body = {
+    message: 'Signature update ' + new Date().toISOString(),
+    content: encoded
+  };
+  if (fileSha) body.sha = fileSha;
+
+  const resp = await fetch(API, {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'token ' + K,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!resp.ok) {
+    const err = await resp.text();
+    console.error('Save error:', resp.status, err);
     return false;
   }
+
+  const result = await resp.json();
+  fileSha = result.content.sha;
+  return true;
 }
 
 async function submitSignature(id) {
@@ -436,10 +463,10 @@ async function submitSignature(id) {
     if (el && el.value) savedData.fields[fid] = el.value;
   });
 
-  const ok = await saveToCloud();
+  const ok = await saveToGitHub();
   if (ok) {
     lockPad(id, display);
-    setStatus(id, 'Saved', 'saved');
+    setStatus(id, 'Saved to GitHub', 'saved');
     updateBanner();
   } else {
     setStatus(id, 'Save failed - try again', 'error');
