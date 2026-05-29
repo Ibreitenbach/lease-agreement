@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agreement to Remove Tenant from Lease</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Times New Roman', Georgia, serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; color: #111; line-height: 1.6; }
+  h1 { text-align: center; font-size: 18px; margin-bottom: 24px; letter-spacing: 1px; }
+  h2 { text-align: center; font-size: 15px; margin: 20px 0 12px; letter-spacing: 1px; }
+  .intro { margin-bottom: 16px; }
+  .parties { margin: 0 0 8px 40px; }
+  .address { text-align: center; margin: 12px 0 24px; }
+  .section { margin-bottom: 14px; text-align: justify; }
+  .section strong { font-size: 14px; }
+  .indent { margin-left: 24px; }
+  .fillable { border: none; border-bottom: 1px solid #333; background: #fafafa; font-family: inherit; font-size: 14px; padding: 2px 6px; min-width: 120px; }
+  .fillable:focus { outline: none; background: #fff8e0; }
+  .fillable-wide { width: 200px; }
+  .fillable-short { width: 80px; }
+  .fillable-med { width: 140px; }
+  .checkbox-row { margin: 8px 0 8px 24px; }
+  .checkbox-row input[type="checkbox"] { margin-right: 8px; transform: scale(1.2); }
+
+  .sig-block { margin: 30px 0; page-break-inside: avoid; }
+  .sig-label { font-weight: bold; margin-bottom: 8px; font-size: 15px; }
+  .sig-row { display: flex; align-items: flex-end; gap: 20px; margin-bottom: 4px; }
+  .sig-canvas-wrap { flex: 1; position: relative; }
+  .sig-canvas { border: 1px solid #999; border-radius: 4px; cursor: crosshair; display: block; width: 100%; height: 80px; background: #fff; touch-action: none; }
+  .sig-canvas.signed { border-color: #2a7d2a; background: #f8fff8; }
+  .sig-date { font-size: 13px; color: #444; min-width: 200px; text-align: right; }
+  .sig-name { font-size: 13px; color: #555; margin-top: 2px; }
+  .sig-actions { margin-top: 4px; }
+  .sig-actions button { font-size: 12px; padding: 3px 10px; margin-right: 6px; cursor: pointer; border: 1px solid #aaa; border-radius: 3px; background: #f5f5f5; }
+  .sig-actions button:hover { background: #e8e8e8; }
+  .sig-actions button.sign-btn { background: #2a7d2a; color: white; border-color: #1e5e1e; }
+  .sig-actions button.sign-btn:hover { background: #236b23; }
+  .sig-actions button.sign-btn:disabled { background: #999; border-color: #888; cursor: default; }
+  .sig-status { font-size: 12px; color: #2a7d2a; font-weight: bold; display: none; }
+  .sig-status.visible { display: inline; }
+
+  .separator { border: none; border-top: 1px dashed #999; margin: 30px 0; }
+
+  .actions-bar { text-align: center; margin: 30px 0; padding: 20px; background: #f5f5f5; border-radius: 8px; }
+  .actions-bar button { font-size: 15px; padding: 10px 28px; margin: 0 8px; cursor: pointer; border: 1px solid #555; border-radius: 5px; }
+  .actions-bar .print-btn { background: #2a5da8; color: white; border-color: #1e4a85; }
+  .actions-bar .print-btn:hover { background: #234d8c; }
+  .actions-bar .download-btn { background: #6b4ba3; color: white; border-color: #553b82; }
+  .actions-bar .download-btn:hover { background: #5a3f8c; }
+
+  .legal-note { font-size: 11px; color: #777; text-align: center; margin-top: 20px; font-style: italic; }
+
+  @media print {
+    .sig-actions, .actions-bar, .legal-note { display: none !important; }
+    .sig-canvas { border: 1px solid #ccc; }
+    body { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>AGREEMENT TO REMOVE TENANT FROM LEASE</h1>
+
+<p class="intro">
+  This Agreement is entered into on the
+  <input type="text" class="fillable fillable-short" id="day" placeholder="day"> day of
+  <input type="text" class="fillable fillable-med" id="month" placeholder="month">, 2026,
+  by and between:
+</p>
+
+<div class="parties">
+  <strong>REMAINING TENANT:</strong> Isaac Breitenbach<br>
+  <strong>DEPARTING TENANT:</strong> Jamie Young
+</div>
+
+<div class="address">
+  <strong>Property Address:</strong><br>
+  1325 NW 101st Street<br>
+  Oklahoma City, OK 73114
+</div>
+
+<h2>RECITALS</h2>
+
+<p class="section">
+  The parties are currently co-tenants under a residential lease agreement (&ldquo;Lease&rdquo;) for the above-referenced property. The parties mutually desire to remove Jamie Young from the Lease, with Isaac Breitenbach continuing as sole tenant.
+</p>
+
+<h2>AGREEMENT</h2>
+
+<p class="section">
+  <strong>1. REMOVAL FROM LEASE.</strong> Effective on the date this Agreement is fully executed by both parties and acknowledged by the Landlord, Jamie Young shall be removed from the Lease as a tenant.
+</p>
+
+<p class="section">
+  <strong>2. RELEASE OF LIABILITY.</strong> Upon Landlord&rsquo;s written acknowledgment of this Agreement, Jamie Young shall be released from all future obligations arising under the Lease, including but not limited to rent payments, utility charges, and property damage occurring after the effective date.
+</p>
+
+<p class="section">
+  <strong>3. ASSUMPTION OF OBLIGATIONS.</strong> Isaac Breitenbach hereby assumes sole responsibility for all obligations under the Lease from the effective date forward, including monthly rent, utilities, and maintenance of the premises.
+</p>
+
+<p class="section">
+  <strong>4. SECURITY DEPOSIT.</strong>
+</p>
+<div class="checkbox-row">
+  <label><input type="checkbox" id="dep-opt-a" checked> The security deposit shall remain applied to the Lease for the benefit of the Remaining Tenant. Jamie Young waives any claim to the security deposit.</label>
+</div>
+<div class="checkbox-row">
+  <label><input type="checkbox" id="dep-opt-b"> Jamie Young shall receive $<input type="text" class="fillable fillable-short" id="dep-amount" placeholder="amount"> as her portion of the security deposit, to be paid by Isaac Breitenbach within <input type="text" class="fillable fillable-short" id="dep-days" placeholder="days"> days of the effective date.</label>
+</div>
+
+<p class="section">
+  <strong>5. KEYS AND ACCESS.</strong> Jamie Young shall return all keys, access cards, garage openers, and any other means of entry to the property to Isaac Breitenbach on or before:
+  <input type="date" class="fillable fillable-wide" id="key-date">
+</p>
+
+<p class="section">
+  <strong>6. PERSONAL PROPERTY.</strong> Jamie Young shall remove all personal belongings from the property on or before:
+  <input type="date" class="fillable fillable-wide" id="moveout-date">
+  Any personal property remaining after that date shall be considered abandoned.
+</p>
+
+<p class="section">
+  <strong>7. EXISTING DAMAGES.</strong> Both parties acknowledge that as of the date of this Agreement, any existing damage to the property is the shared responsibility of both parties for the period of joint tenancy. Isaac Breitenbach assumes responsibility for the condition of the property from the effective date forward.
+</p>
+
+<p class="section">
+  <strong>8. LANDLORD ACKNOWLEDGMENT.</strong> This Agreement is contingent upon written acknowledgment by the Landlord or property management company. Both parties agree to cooperate in obtaining such acknowledgment.
+</p>
+
+<p class="section">
+  <strong>9. GOVERNING LAW.</strong> This Agreement shall be governed by the laws of the State of Oklahoma.
+</p>
+
+<p class="section">
+  <strong>10. ENTIRE AGREEMENT.</strong> This Agreement constitutes the entire understanding between the parties regarding the removal of Jamie Young from the Lease and supersedes any prior oral or written agreements on this subject.
+</p>
+
+<!-- Signature Blocks -->
+
+<div class="sig-block">
+  <div class="sig-label">REMAINING TENANT:</div>
+  <div class="sig-row">
+    <div class="sig-canvas-wrap">
+      <canvas class="sig-canvas" id="sig-tenant1" width="500" height="80"></canvas>
+      <div class="sig-name">Isaac Breitenbach</div>
+      <div class="sig-actions">
+        <button class="sign-btn" onclick="lockSignature('tenant1')">Sign &amp; Lock</button>
+        <button onclick="clearSignature('tenant1')">Clear</button>
+        <span class="sig-status" id="status-tenant1"></span>
+      </div>
+    </div>
+    <div class="sig-date" id="date-tenant1">Date: _________________</div>
+  </div>
+</div>
+
+<div class="sig-block">
+  <div class="sig-label">DEPARTING TENANT:</div>
+  <div class="sig-row">
+    <div class="sig-canvas-wrap">
+      <canvas class="sig-canvas" id="sig-tenant2" width="500" height="80"></canvas>
+      <div class="sig-name">Jamie Young</div>
+      <div class="sig-actions">
+        <button class="sign-btn" onclick="lockSignature('tenant2')">Sign &amp; Lock</button>
+        <button onclick="clearSignature('tenant2')">Clear</button>
+        <span class="sig-status" id="status-tenant2"></span>
+      </div>
+    </div>
+    <div class="sig-date" id="date-tenant2">Date: _________________</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<h2>LANDLORD / PROPERTY MANAGER ACKNOWLEDGMENT</h2>
+
+<p class="section">
+  I/We acknowledge the above Agreement and consent to the removal of Jamie Young from the Lease for the property located at 1325 NW 101st Street, Oklahoma City, OK 73114. The Lease shall continue in full force and effect with Isaac Breitenbach as the sole tenant.
+</p>
+
+<p class="section">
+  Landlord / Property Manager Name: <input type="text" class="fillable fillable-wide" id="landlord-name" placeholder="Print name">
+</p>
+<p class="section">
+  Company: <input type="text" class="fillable fillable-wide" id="landlord-company" placeholder="If applicable">
+</p>
+
+<div class="sig-block">
+  <div class="sig-label">LANDLORD SIGNATURE:</div>
+  <div class="sig-row">
+    <div class="sig-canvas-wrap">
+      <canvas class="sig-canvas" id="sig-landlord" width="500" height="80"></canvas>
+      <div class="sig-actions">
+        <button class="sign-btn" onclick="lockSignature('landlord')">Sign &amp; Lock</button>
+        <button onclick="clearSignature('landlord')">Clear</button>
+        <span class="sig-status" id="status-landlord"></span>
+      </div>
+    </div>
+    <div class="sig-date" id="date-landlord">Date: _________________</div>
+  </div>
+</div>
+
+<div class="actions-bar">
+  <button class="print-btn" onclick="window.print()">Print Document</button>
+  <button class="download-btn" onclick="downloadPDF()">Download as PDF</button>
+  <button class="download-btn" style="background:#2a7d2a;border-color:#1e5e1e;" onclick="downloadSigned()">Download HTML Copy</button>
+</div>
+
+<div class="actions-bar" id="all-signed-banner" style="display:none; background:#e8f5e9; border:2px solid #2a7d2a;">
+  <p style="margin-bottom:12px; font-weight:bold; color:#2a7d2a;">All tenant signatures collected. Ready to send to landlord.</p>
+  <button class="download-btn" style="font-size:17px;padding:12px 36px;background:#2a7d2a;border-color:#1e5e1e;" onclick="downloadPDF()">Download PDF for Landlord</button>
+</div>
+
+<p class="legal-note">
+  Digital signatures captured with timestamp and rendered on canvas.
+  For additional legal weight, consider having signatures notarized.
+</p>
+
+<script>
+const pads = {};
+
+function initPad(id) {
+  const canvas = document.getElementById('sig-' + id);
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let locked = false;
+  let hasStrokes = false;
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = '#111';
+  }
+  resize();
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches ? e.touches[0] : e;
+    return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+  }
+
+  function start(e) {
+    if (locked) return;
+    e.preventDefault();
+    drawing = true;
+    hasStrokes = true;
+    const p = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+  }
+
+  function move(e) {
+    if (!drawing || locked) return;
+    e.preventDefault();
+    const p = getPos(e);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+  }
+
+  function end(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    drawing = false;
+  }
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', move);
+  canvas.addEventListener('mouseup', end);
+  canvas.addEventListener('mouseleave', end);
+  canvas.addEventListener('touchstart', start, { passive: false });
+  canvas.addEventListener('touchmove', move, { passive: false });
+  canvas.addEventListener('touchend', end, { passive: false });
+
+  pads[id] = {
+    canvas, ctx, resize,
+    get locked() { return locked; },
+    set locked(v) { locked = v; },
+    get hasStrokes() { return hasStrokes; },
+    clear() {
+      if (locked) return;
+      const dpr = window.devicePixelRatio || 1;
+      ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+      hasStrokes = false;
+    }
+  };
+}
+
+function clearSignature(id) {
+  if (pads[id].locked) return;
+  pads[id].clear();
+  document.getElementById('status-' + id).classList.remove('visible');
+  document.getElementById('date-' + id).textContent = 'Date: _________________';
+  pads[id].canvas.classList.remove('signed');
+}
+
+function lockSignature(id) {
+  const pad = pads[id];
+  if (pad.locked) return;
+  if (!pad.hasStrokes) { alert('Please draw your signature first.'); return; }
+  pad.locked = true;
+  pad.canvas.classList.add('signed');
+  pad.canvas.style.cursor = 'default';
+  const now = new Date();
+  const ts = now.toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'medium' });
+  document.getElementById('date-' + id).innerHTML = '<strong>Signed:</strong> ' + ts;
+  const status = document.getElementById('status-' + id);
+  status.textContent = 'Locked';
+  status.classList.add('visible');
+  pad.canvas.parentElement.querySelector('.sign-btn').disabled = true;
+
+  if (pads.tenant1.locked && pads.tenant2.locked) {
+    document.getElementById('all-signed-banner').style.display = 'block';
+    document.getElementById('all-signed-banner').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function downloadPDF() {
+  const canvases = document.querySelectorAll('.sig-canvas');
+  canvases.forEach(c => {
+    if (pads[c.id.replace('sig-', '')].hasStrokes) {
+      const img = document.createElement('img');
+      img.src = c.toDataURL('image/png');
+      img.style.cssText = 'width:100%;height:80px;border:1px solid #999;border-radius:4px;display:block;';
+      img.className = 'sig-print-img';
+      c.style.display = 'none';
+      c.parentElement.insertBefore(img, c);
+    }
+  });
+
+  document.querySelectorAll('.sig-actions, .actions-bar, .legal-note').forEach(el => {
+    el.dataset.origDisplay = el.style.display;
+    el.style.display = 'none';
+  });
+
+  window.print();
+
+  setTimeout(() => {
+    document.querySelectorAll('.sig-print-img').forEach(img => img.remove());
+    canvases.forEach(c => c.style.display = 'block');
+    document.querySelectorAll('.sig-actions, .actions-bar, .legal-note').forEach(el => {
+      el.style.display = el.dataset.origDisplay || '';
+    });
+  }, 1000);
+}
+
+function downloadSigned() {
+  const clone = document.documentElement.cloneNode(true);
+  clone.querySelectorAll('.actions-bar, .legal-note, script').forEach(el => el.remove());
+
+  for (const id of Object.keys(pads)) {
+    const origCanvas = pads[id].canvas;
+    const img = clone.querySelector('#sig-' + id);
+    if (img && pads[id].hasStrokes) {
+      const imgEl = document.createElement('img');
+      imgEl.src = origCanvas.toDataURL('image/png');
+      imgEl.style.cssText = 'width:100%;height:80px;border:1px solid #999;border-radius:4px;';
+      img.replaceWith(imgEl);
+    }
+  }
+
+  const blob = new Blob(['<!DOCTYPE html>' + clone.outerHTML], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Lease_Removal_Agreement_Signed.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+['tenant1', 'tenant2', 'landlord'].forEach(initPad);
+
+document.getElementById('dep-opt-a').addEventListener('change', function() {
+  if (this.checked) document.getElementById('dep-opt-b').checked = false;
+});
+document.getElementById('dep-opt-b').addEventListener('change', function() {
+  if (this.checked) document.getElementById('dep-opt-a').checked = false;
+});
+</script>
+</body>
+</html>
