@@ -26,46 +26,36 @@
   .sig-canvas-wrap { flex: 1; position: relative; }
   .sig-canvas { border: 1px solid #999; border-radius: 4px; cursor: crosshair; display: block; width: 100%; height: 80px; background: #fff; touch-action: none; }
   .sig-canvas.signed { border-color: #2a7d2a; background: #f8fff8; cursor: default; }
-  .sig-canvas.remote { border-color: #2a5da8; background: #f0f5ff; cursor: default; }
   .sig-date { font-size: 13px; color: #444; min-width: 220px; text-align: right; }
   .sig-name { font-size: 13px; color: #555; margin-top: 2px; }
   .sig-actions { margin-top: 4px; }
   .sig-actions button { font-size: 12px; padding: 4px 12px; margin-right: 6px; cursor: pointer; border: 1px solid #aaa; border-radius: 3px; background: #f5f5f5; }
   .sig-actions button:hover { background: #e8e8e8; }
-  .sig-actions button.sign-btn { background: #2a7d2a; color: white; border-color: #1e5e1e; font-size: 13px; padding: 5px 16px; }
+  .sig-actions button.sign-btn { background: #2a7d2a; color: white; border-color: #1e5e1e; font-size: 14px; padding: 6px 20px; }
   .sig-actions button.sign-btn:hover { background: #236b23; }
   .sig-actions button.sign-btn:disabled { background: #999; border-color: #888; cursor: default; }
-  .sig-status { font-size: 12px; color: #2a7d2a; font-weight: bold; display: none; margin-left: 6px; }
+  .sig-status { font-size: 12px; font-weight: bold; display: none; margin-left: 6px; }
   .sig-status.visible { display: inline; }
+  .sig-status.saved { color: #2a7d2a; }
+  .sig-status.saving { color: #e65100; }
+  .sig-status.error { color: #c62828; }
 
   .separator { border: none; border-top: 1px dashed #999; margin: 30px 0; }
 
-  .share-bar, .actions-bar { text-align: center; margin: 20px 0; padding: 20px; border-radius: 8px; }
-  .share-bar { background: #e8f0fe; border: 2px solid #2a5da8; }
-  .actions-bar { background: #f5f5f5; }
-  .share-bar h3 { color: #2a5da8; margin-bottom: 10px; font-size: 16px; }
-  .share-bar p { font-size: 13px; color: #444; margin-bottom: 12px; }
-  .share-bar button, .actions-bar button { font-size: 15px; padding: 10px 28px; margin: 4px 8px; cursor: pointer; border: 1px solid #555; border-radius: 5px; color: white; }
-  .btn-share { background: #2a5da8; border-color: #1e4a85; }
-  .btn-share:hover { background: #234d8c; }
-  .btn-finalize { background: #2a7d2a; border-color: #1e5e1e; }
-  .btn-finalize:hover { background: #236b23; }
+  .actions-bar { text-align: center; margin: 20px 0; padding: 20px; border-radius: 8px; background: #f5f5f5; }
+  .actions-bar button { font-size: 15px; padding: 10px 28px; margin: 4px 8px; cursor: pointer; border: 1px solid #555; border-radius: 5px; color: white; }
   .btn-pdf { background: #6b4ba3; border-color: #553b82; }
   .btn-pdf:hover { background: #5a3f8c; }
   .btn-print { background: #555; border-color: #333; }
   .btn-print:hover { background: #444; }
 
-  .link-box { width: 100%; padding: 8px; font-size: 12px; font-family: monospace; border: 1px solid #aaa; border-radius: 4px; margin: 8px 0; background: #fff; }
-  .copied-msg { color: #2a7d2a; font-weight: bold; font-size: 13px; display: none; }
-
   .banner { text-align: center; margin: 20px 0; padding: 16px 20px; border-radius: 8px; font-size: 14px; }
   .banner-complete { background: #e8f5e9; border: 2px solid #2a7d2a; color: #1e5e1e; }
   .banner-partial { background: #fff3e0; border: 2px solid #e65100; color: #bf360c; }
-  .banner-viewing { background: #e8f0fe; border: 2px solid #2a5da8; color: #1a4a7a; }
+  .banner-loading { background: #e8f0fe; border: 2px solid #2a5da8; color: #1a4a7a; }
 
   .legal-note { font-size: 11px; color: #777; text-align: center; margin-top: 20px; font-style: italic; }
 
-  .no-print { }
   @media print {
     .no-print { display: none !important; }
     .sig-canvas { border: 1px solid #ccc; }
@@ -75,7 +65,7 @@
 </head>
 <body>
 
-<div class="banner banner-viewing no-print" id="mode-banner" style="display:none;"></div>
+<div class="banner banner-loading no-print" id="status-banner">Loading signatures...</div>
 
 <h1>AGREEMENT TO REMOVE TENANT FROM LEASE</h1>
 
@@ -153,14 +143,14 @@
 
 <!-- Signature Blocks -->
 
-<div class="sig-block" id="block-tenant1">
+<div class="sig-block">
   <div class="sig-label">REMAINING TENANT:</div>
   <div class="sig-row">
     <div class="sig-canvas-wrap">
       <canvas class="sig-canvas" id="sig-tenant1" width="500" height="80"></canvas>
       <div class="sig-name">Isaac Breitenbach</div>
       <div class="sig-actions no-print" id="actions-tenant1">
-        <button class="sign-btn" onclick="lockSignature('tenant1')">Sign &amp; Lock</button>
+        <button class="sign-btn" onclick="submitSignature('tenant1')">Sign &amp; Submit</button>
         <button onclick="clearSignature('tenant1')">Clear</button>
         <span class="sig-status" id="status-tenant1"></span>
       </div>
@@ -169,14 +159,14 @@
   </div>
 </div>
 
-<div class="sig-block" id="block-tenant2">
+<div class="sig-block">
   <div class="sig-label">DEPARTING TENANT:</div>
   <div class="sig-row">
     <div class="sig-canvas-wrap">
       <canvas class="sig-canvas" id="sig-tenant2" width="500" height="80"></canvas>
       <div class="sig-name">Jamie Young</div>
       <div class="sig-actions no-print" id="actions-tenant2">
-        <button class="sign-btn" onclick="lockSignature('tenant2')">Sign &amp; Lock</button>
+        <button class="sign-btn" onclick="submitSignature('tenant2')">Sign &amp; Submit</button>
         <button onclick="clearSignature('tenant2')">Clear</button>
         <span class="sig-status" id="status-tenant2"></span>
       </div>
@@ -200,13 +190,13 @@
   Company: <input type="text" class="fillable fillable-wide" id="landlord-company" placeholder="If applicable">
 </p>
 
-<div class="sig-block" id="block-landlord">
+<div class="sig-block">
   <div class="sig-label">LANDLORD SIGNATURE:</div>
   <div class="sig-row">
     <div class="sig-canvas-wrap">
       <canvas class="sig-canvas" id="sig-landlord" width="500" height="80"></canvas>
       <div class="sig-actions no-print" id="actions-landlord">
-        <button class="sign-btn" onclick="lockSignature('landlord')">Sign &amp; Lock</button>
+        <button class="sign-btn" onclick="submitSignature('landlord')">Sign &amp; Submit</button>
         <button onclick="clearSignature('landlord')">Clear</button>
         <span class="sig-status" id="status-landlord"></span>
       </div>
@@ -215,41 +205,20 @@
   </div>
 </div>
 
-<!-- Share / Action Bars -->
-
-<div class="share-bar no-print" id="share-isaac" style="display:none;">
-  <h3>Step 1: Send this link to Jamie</h3>
-  <p>Your signature is embedded in the link. Jamie will see it locked and can add hers.</p>
-  <textarea class="link-box" id="share-link" rows="3" readonly></textarea>
-  <br>
-  <button class="btn-share" onclick="copyLink()">Copy Link</button>
-  <span class="copied-msg" id="copied-msg">Copied!</span>
-</div>
-
-<div class="share-bar no-print" id="share-jamie" style="display:none; border-color:#2a7d2a; background:#e8f5e9;">
-  <h3>Step 2: Send completed agreement to landlord</h3>
-  <p>Both tenant signatures collected. Generate a link with all signatures for the landlord, or download PDF.</p>
-  <textarea class="link-box" id="share-link-final" rows="3" readonly></textarea>
-  <br>
-  <button class="btn-share" onclick="copyLinkFinal()">Copy Link for Landlord</button>
-  <span class="copied-msg" id="copied-msg-final">Copied!</span>
-  <br><br>
-  <button class="btn-finalize" onclick="downloadPDF()">Download PDF</button>
-</div>
-
-<div class="actions-bar no-print" id="general-actions">
+<div class="actions-bar no-print">
   <button class="btn-print" onclick="window.print()">Print</button>
   <button class="btn-pdf" onclick="downloadPDF()">Download PDF</button>
 </div>
 
 <p class="legal-note no-print">
-  Signatures are recorded as pen strokes with timestamps and embedded in shareable links.
-  No data is sent to any server. For additional legal weight, consider having signatures notarized.
+  Signatures are saved to a shared document. All parties can view and download from this same page.
 </p>
 
 <script>
+const BLOB_ID = '019e7536-5c5d-7574-adc9-735691513cd2';
+const API = 'https://jsonblob.com/api/jsonBlob/' + BLOB_ID;
 const pads = {};
-const sigData = {};
+let savedData = { signatures: {}, fields: {} };
 
 function initPad(id) {
   const canvas = document.getElementById('sig-' + id);
@@ -344,7 +313,6 @@ function initPad(id) {
 function replayStrokes(id) {
   const pad = pads[id];
   const ctx = pad.ctx;
-  const rect = pad.canvas.getBoundingClientRect();
   ctx.lineWidth = 2;
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
@@ -360,114 +328,122 @@ function replayStrokes(id) {
   }
 }
 
+function lockPad(id, timestamp) {
+  const pad = pads[id];
+  pad.locked = true;
+  pad.canvas.classList.add('signed');
+  document.getElementById('date-' + id).innerHTML = '<strong>Signed:</strong> ' + timestamp;
+  document.getElementById('actions-' + id).style.display = 'none';
+}
+
 function clearSignature(id) {
   if (pads[id].locked) return;
   pads[id].clear();
-  document.getElementById('status-' + id).classList.remove('visible');
-  document.getElementById('date-' + id).textContent = 'Date: _________________';
-  pads[id].canvas.classList.remove('signed');
-  delete sigData[id];
+  setStatus(id, '');
 }
 
-function lockSignature(id) {
+function setStatus(id, text, type) {
+  const el = document.getElementById('status-' + id);
+  el.textContent = text;
+  el.className = 'sig-status' + (text ? ' visible' : '') + (type ? ' ' + type : '');
+}
+
+function updateBanner() {
+  const banner = document.getElementById('status-banner');
+  const sigs = savedData.signatures || {};
+  const has1 = !!sigs.tenant1;
+  const has2 = !!sigs.tenant2;
+  const hasL = !!sigs.landlord;
+
+  if (has1 && has2 && hasL) {
+    banner.className = 'banner banner-complete no-print';
+    banner.innerHTML = '<strong>All parties have signed. This agreement is fully executed.</strong><br>Download or print the completed document below.';
+  } else if (has1 && has2) {
+    banner.className = 'banner banner-complete no-print';
+    banner.innerHTML = '<strong>Both tenants have signed.</strong><br>Share this page with the landlord for their signature. Anyone can download the PDF below.';
+  } else if (has1 || has2) {
+    const who = has1 ? 'Isaac Breitenbach' : 'Jamie Young';
+    const needed = has1 ? 'Jamie Young' : 'Isaac Breitenbach';
+    banner.className = 'banner banner-partial no-print';
+    banner.innerHTML = '<strong>' + who + ' has signed.</strong><br>' + needed + ', please review and add your signature below.';
+  } else {
+    banner.className = 'banner banner-loading no-print';
+    banner.innerHTML = 'No signatures yet. Review the agreement and sign below.';
+  }
+  banner.style.display = 'block';
+}
+
+async function loadSignatures() {
+  try {
+    const resp = await fetch(API, { headers: { 'Accept': 'application/json' } });
+    if (!resp.ok) throw new Error('Failed to load');
+    savedData = await resp.json();
+
+    for (const [id, data] of Object.entries(savedData.signatures || {})) {
+      if (!pads[id]) continue;
+      pads[id].strokes = data.strokes;
+      pads[id].hasStrokes = true;
+      replayStrokes(id);
+      lockPad(id, data.display);
+    }
+
+    if (savedData.fields) {
+      for (const [fid, val] of Object.entries(savedData.fields)) {
+        const el = document.getElementById(fid);
+        if (el) el.value = val;
+      }
+    }
+  } catch (e) {
+    console.error('Load error:', e);
+  }
+  updateBanner();
+}
+
+async function saveToCloud() {
+  try {
+    const resp = await fetch(API, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(savedData)
+    });
+    return resp.ok;
+  } catch (e) {
+    console.error('Save error:', e);
+    return false;
+  }
+}
+
+async function submitSignature(id) {
   const pad = pads[id];
   if (pad.locked) return;
   if (!pad.hasStrokes) { alert('Please draw your signature first.'); return; }
 
-  pad.locked = true;
-  pad.canvas.classList.add('signed');
-  const now = new Date();
-  const ts = now.toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'medium' });
-  const isoTs = now.toISOString();
-  document.getElementById('date-' + id).innerHTML = '<strong>Signed:</strong> ' + ts;
-  const status = document.getElementById('status-' + id);
-  status.textContent = 'Locked';
-  status.classList.add('visible');
-  pad.canvas.parentElement.querySelector('.sign-btn').disabled = true;
+  setStatus(id, 'Saving...', 'saving');
 
-  sigData[id] = {
+  const now = new Date();
+  const display = now.toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'medium' });
+
+  savedData.signatures = savedData.signatures || {};
+  savedData.signatures[id] = {
     strokes: pad.strokes,
-    timestamp: isoTs,
-    display: ts
+    timestamp: now.toISOString(),
+    display: display
   };
 
-  updateShareUI();
-}
-
-function loadRemoteSignature(id, data) {
-  const pad = pads[id];
-  pad.strokes = data.strokes;
-  pad.hasStrokes = true;
-  pad.locked = true;
-  pad.canvas.classList.add('signed', 'remote');
-  replayStrokes(id);
-  document.getElementById('date-' + id).innerHTML = '<strong>Signed:</strong> ' + data.display;
-  const status = document.getElementById('status-' + id);
-  status.textContent = 'Verified';
-  status.classList.add('visible');
-  const signBtn = pad.canvas.parentElement.querySelector('.sign-btn');
-  if (signBtn) signBtn.disabled = true;
-  sigData[id] = data;
-}
-
-function encodeSignatures() {
-  const payload = {};
-  for (const [id, data] of Object.entries(sigData)) {
-    payload[id] = data;
-  }
-  const json = JSON.stringify(payload);
-  return btoa(unescape(encodeURIComponent(json)));
-}
-
-function decodeSignatures(encoded) {
-  try {
-    const json = decodeURIComponent(escape(atob(encoded)));
-    return JSON.parse(json);
-  } catch (e) {
-    return null;
-  }
-}
-
-function buildShareURL() {
-  const base = window.location.origin + window.location.pathname;
-  const encoded = encodeSignatures();
-  return base + '#sig=' + encoded;
-}
-
-function updateShareUI() {
-  const has1 = !!sigData.tenant1;
-  const has2 = !!sigData.tenant2;
-
-  if (has1 && !has2) {
-    document.getElementById('share-isaac').style.display = 'block';
-    document.getElementById('share-jamie').style.display = 'none';
-    document.getElementById('share-link').value = buildShareURL();
-  } else if (has1 && has2) {
-    document.getElementById('share-isaac').style.display = 'none';
-    document.getElementById('share-jamie').style.display = 'block';
-    document.getElementById('share-link-final').value = buildShareURL();
-    // general-actions always stays visible for PDF download
-  }
-}
-
-function copyLink() {
-  const el = document.getElementById('share-link');
-  el.select();
-  navigator.clipboard.writeText(el.value).then(() => {
-    const msg = document.getElementById('copied-msg');
-    msg.style.display = 'inline';
-    setTimeout(() => msg.style.display = 'none', 2000);
+  savedData.fields = savedData.fields || {};
+  ['day', 'month', 'key-date', 'landlord-name', 'landlord-company'].forEach(fid => {
+    const el = document.getElementById(fid);
+    if (el && el.value) savedData.fields[fid] = el.value;
   });
-}
 
-function copyLinkFinal() {
-  const el = document.getElementById('share-link-final');
-  el.select();
-  navigator.clipboard.writeText(el.value).then(() => {
-    const msg = document.getElementById('copied-msg-final');
-    msg.style.display = 'inline';
-    setTimeout(() => msg.style.display = 'none', 2000);
-  });
+  const ok = await saveToCloud();
+  if (ok) {
+    lockPad(id, display);
+    setStatus(id, 'Saved', 'saved');
+    updateBanner();
+  } else {
+    setStatus(id, 'Save failed - try again', 'error');
+  }
 }
 
 function downloadPDF() {
@@ -483,9 +459,7 @@ function downloadPDF() {
       c.parentElement.insertBefore(img, c);
     }
   });
-
   window.print();
-
   setTimeout(() => {
     document.querySelectorAll('.sig-print-img').forEach(img => img.remove());
     canvases.forEach(c => c.style.display = 'block');
@@ -494,43 +468,7 @@ function downloadPDF() {
 
 // --- Init ---
 ['tenant1', 'tenant2', 'landlord'].forEach(initPad);
-
-// Load signatures from URL hash
-(function loadFromHash() {
-  const hash = window.location.hash;
-  if (!hash || !hash.startsWith('#sig=')) return;
-
-  const encoded = hash.substring(5);
-  const decoded = decodeSignatures(encoded);
-  if (!decoded) return;
-
-  const banner = document.getElementById('mode-banner');
-  const keys = Object.keys(decoded);
-
-  if (decoded.tenant1 && !decoded.tenant2) {
-    loadRemoteSignature('tenant1', decoded.tenant1);
-    banner.className = 'banner banner-partial no-print';
-    banner.innerHTML = '<strong>Isaac Breitenbach has signed this agreement.</strong><br>Jamie, please review the agreement above and add your signature below.';
-    banner.style.display = 'block';
-    document.getElementById('actions-tenant1').style.display = 'none';
-  } else if (decoded.tenant1 && decoded.tenant2) {
-    loadRemoteSignature('tenant1', decoded.tenant1);
-    loadRemoteSignature('tenant2', decoded.tenant2);
-    banner.className = 'banner banner-complete no-print';
-    banner.innerHTML = '<strong>Both tenants have signed.</strong><br>Landlord: please review and add your signature below, then download the PDF.';
-    banner.style.display = 'block';
-    document.getElementById('actions-tenant1').style.display = 'none';
-    document.getElementById('actions-tenant2').style.display = 'none';
-  }
-
-  if (decoded.landlord) {
-    loadRemoteSignature('landlord', decoded.landlord);
-    banner.className = 'banner banner-complete no-print';
-    banner.innerHTML = '<strong>All parties have signed. This agreement is fully executed.</strong>';
-    banner.style.display = 'block';
-    document.getElementById('actions-landlord').style.display = 'none';
-  }
-})();
+loadSignatures();
 </script>
 </body>
 </html>
